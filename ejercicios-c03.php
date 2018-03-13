@@ -182,53 +182,68 @@ foreach ($mascota as $key => $value) {
 }
 echo "<br>";
 
+// Ejercicio 11
+
+$ceu = array( "Italia"=>"Roma", "Luxembourg"=>"Luxembourg", "Bélgica"=> "Bruselas", "Dinamarca"=>"Copenhagen", "Finlandia"=>"Helsinki", "Francia" => "Paris", "Slovakia"=>"Bratislava", "Eslovenia"=>"Ljubljana", "Alemania" => "Berlin", "Grecia" => "Athenas", "Irlanda"=>"Dublin", "Holanda"=>"Amsterdam", "Portugal"=>"Lisbon", "España"=>"Madrid", "Suecia"=>"Stockholm", "Reino Unido"=>"London", "Chipre"=>"Nicosia", "Lithuania"=>"Vilnius", "Republica Checa"=>"Prague", "Estonia"=>"Tallin", "Hungría"=>"Budapest", "Latvia"=>"Riga", "Malta"=>"Valletta", "Austria" => "Vienna", "Polonia"=>"Warsaw");
+
+// Ordena el array
+ksort($ceu);
+
+foreach ($ceu as $pais => $ciudad) {
+  echo "<ul>";
+  echo "<li> La capital de $pais es $ciudad </li>";
+  echo "</ul>";
+}
+
+// Ejercicio 12
+
+$ceu = [
+  "Argentina" => ["Buenos Aires", "Córdoba", "Santa Fé"],
+  "Brasil" => ["Brasilia", "Rio de Janeiro", "Sao Pablo"],
+  "Colombia" => ["Cartagena", "Bogota", "Barranquilla"],
+  "Francia" => ["Paris", "Nantes", "Lyon"],
+  "Italia" => ["Roma", "Milan", "Venecia"],
+  "Alemania" => ["Munich", "Berlin", "Frankfurt"]
+];
+
+foreach ($ceu as $pais => $ciudad) {
+  echo "Las ciudades de $pais son: ";
+  foreach ($ciudad as $ciudades) {
+    echo "<li> $ciudades </li>";
+  }
+}
+
+$ceu2 = [
+  ["Argentina" => ["Buenos Aires", "Córdoba", "Santa Fé"],
+  $esAmericano = true
+  ],
+  ["Brasil" => ["Brasilia", "Rio de Janeiro", "Sao Pablo"],
+  $esAmericano = true
+  ],
+  ["Colombia" => ["Cartagena", "Bogota", "Barranquilla"],
+  $esAmericano = true
+  ],
+  ["Francia" => ["Paris", "Nantes", "Lyon"],
+  $esAmericano = false
+  ],
+  ["Italia" => ["Roma", "Milan", "Venecia"],
+  $esAmericano = false
+  ],
+  ["Alemania" => ["Munich", "Berlin", "Frankfurt"],
+  $esAmericano = false
+  ]
+];
+
+var_dump($ceu2);
+
+foreach ($ceu2 as $pais => $ciudad) {
+  echo "Las ciudades de $pais son: ";
+  foreach ($ciudad as $ciudades) {
+    echo "<li> $ciudades </li>";
+  }
+}
 
 
-//
-// 13. Partiendo de un archivo con la siguiente variable definida:
-//
-// $ceu = array( "Italia"=>"Roma", "Luxembourg"=>"Luxembourg", "Bélgica"=> "Bruselas", "Dinamarca"=>"Copenhagen", "Finlandia"=>"Helsinki", "Francia" => "Paris", "Slovakia"=>"Bratislava", "Eslovenia"=>"Ljubljana", "Alemania" => "Berlin", "Grecia" => "Athenas", "Irlanda"=>"Dublin", "Holanda"=>"Amsterdam", "Portugal"=>"Lisbon", "España"=>"Madrid", "Suecia"=>"Stockholm", "Reino Unido"=>"London", "Chipre"=>"Nicosia", "Lithuania"=>"Vilnius", "Republica Checa"=>"Prague", "Estonia"=>"Tallin", "Hungría"=>"Budapest", "Latvia"=>"Riga", "Malta"=>"Valletta", "Austria" => "Vienna", "Polonia"=>"Warsaw") ;
-//
-// Crear un script que muestre el nombre de la capital y el país desde la variable $ceu.
-//
-// Opcional: Ordenar la lista por el nombre del país.
-//
-// Ejemplo de output:
-// La capital de Holanda es Amsterdam.
-// La capital de Grecia es Atenas.
-// La capital de Alemania es Berlín.
-//
-// 14. Partiendo de un archivo con la siguiente variable definida:
-//
-// $ceu = [
-//
-// "Argentina"        => ["Buenos Aires", "Córdoba", "Santa Fé"],
-//
-// "Brasil" => ["Brasilia", "Rio de Janeiro", "Sao Pablo"],
-//
-// "Colombia" => ["Cartagena", "Bogota", "Barranquilla"],
-//
-// "Francia" => ["Paris", "Nantes", "Lyon"],
-//
-// "Italia" => ["Roma", "Milan", "Venecia"],
-//
-// "Alemania" => ["Munich", "Berlin", "Frankfurt"]
-//
-// ];
-//
-// Crear un script que muestre el nombre de cada país y sus ciudades desde la variable $ceu con el siguiente formato:
-//
-// Las ciudades de Argentina son:
-//
-// Buenos Aires
-// Córdoba
-// Santa Fé
-//
-// Las ciudades de Brasil son:
-//
-// Brasilia
-// Rio de Janeiro
-// Sao Pablo
 //
 // 15. A partir del ejercicio anterior:
 //
