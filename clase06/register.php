@@ -4,43 +4,20 @@
 	if(isset($_POST['versionCorta'])){
 		$style = "style='display:none;'";
 	}
-	$nameErr = $emailErr = $usernameErr = $passwordErr = "";
-	$name = $email = $username = $password = "";
 
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		if (empty($_POST["name"])) {
-			$nameErr = "Por favor, no te olvides de ingresar tu nombre";
-		}
-		else {
-			$name = $_POST["name"];
-		}
-	
-		if (empty($_POST["email"]))  {
-			$emailErr = "Por favor, no te olvides de ingresar tu eMail";
-		}
-		else {
-			$email = $_POST["email"];
-		}
-	
-		if (!isset($_POST["username"])) {
-			$usernameErr = "Por favor, no te olvides de ingresar tu nombre de usuario";
-		}
-		else {
-			$username = $_POST["username"];
-		}
-	
-		if (empty($_POST["password"])) {
-			$passwordErr = "Por favor, no te olvides de ingresar tu contraseña";
-		}
-		else {
-			$password = $_POST["password"];
-		}
+	function phpAlert($msg) {
+    echo '<script type="text/javascript">alert("' . $msg . '")</script>';
 	}
 
-
+	if (($_POST['name'] == '') && ($_POST['email'] == '') && ($_POST['username'] == '') && ($_POST['password'] == '')) {
+		phpAlert("Completá los campos obligatorios");
+	} else {
+		header('Location: register.php'); 
+		exit;
+	}
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE) html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -81,7 +58,7 @@
 	 </style>
 </head>
 <body>
-	<form method='post' action="<?= htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+	<form method='post'>
       <fieldset >
 			<legend>Registrate</legend>
 
@@ -89,23 +66,22 @@
 
 			<div class='form-control'>
 				<label for='name' >Nombre completo*: </label>
-				<input type='text' name='name' id='name' value="<?= htmlspecialchars($name) == '' ? $nameErr : htmlspacialchars($name);?>">
+				<input type='text' name='name' id='name' value="<?= isset($_POST['name']) ? $_POST['name'] : '' ?>">
 			</div>
 
 			<div class='form-control'>
 				<label for='email' >Email*:</label>
-				<input type='text' name='email' id='email' value="<?= htmlspecialchars($email) == '' ? $emailErr : htmlspacialchars($email);?>">
+				<input type='text' name='email' id='email' value="<?= isset($_POST['email']) ? $_POST['email'] : '' ?>">
 			</div>
 
 			<div class='form-control'>
 				<label for='username' >Nombre de usuario*:</label>
-				<input type='text' name='username' id='username' value="<?= htmlspecialchars($username) == '' ? $usernameErr : htmlspacialchars($username);?>">
-				<?php var_dump($username)?>
+				<input type='text' name='username' id='username' value="<?= isset($_POST['username']) ? $_POST['username'] : '' ?>">
 			</div>
 
 			<div class='form-control'>
 				<label for='password'>Contraseña*:</label>
-				<input type='password' name='password' id='password' value="<?= htmlspecialchars($password) == '' ? $passwordErr : '';?>">
+				<input type='password' name='password' id='password' value="">
 			</div>
 
 			<div class='form-control'<?= $style;?>>
