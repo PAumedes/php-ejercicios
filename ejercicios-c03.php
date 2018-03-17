@@ -214,27 +214,22 @@ foreach ($ceu as $pais => $ciudad) {
 }
 
 $ceu2 = [
-  ["Argentina" => ["Buenos Aires", "Córdoba", "Santa Fé"],
-  $esAmericano = true
-  ],
-  ["Brasil" => ["Brasilia", "Rio de Janeiro", "Sao Pablo"],
-  $esAmericano = true
-  ],
-  ["Colombia" => ["Cartagena", "Bogota", "Barranquilla"],
-  $esAmericano = true
-  ],
-  ["Francia" => ["Paris", "Nantes", "Lyon"],
-  $esAmericano = false
-  ],
-  ["Italia" => ["Roma", "Milan", "Venecia"],
-  $esAmericano = false
-  ],
-  ["Alemania" => ["Munich", "Berlin", "Frankfurt"],
-  $esAmericano = false
-  ]
+  "Argentina" => [["Buenos Aires", "Córdoba", "Santa Fé"],
+  $esAmericano = true],
+  "Brasil" => [["Brasilia", "Rio de Janeiro", "Sao Pablo"],
+  $esAmericano = true],
+  "Colombia" => [["Cartagena", "Bogota", "Barranquilla"],
+  $esAmericano = true],
+  "Francia" => [["Paris", "Nantes", "Lyon"],
+  $esAmericano = false],
+  "Italia" => [["Roma", "Milan", "Venecia"],
+  $esAmericano = false],
+  "Alemania" => [["Munich", "Berlin", "Frankfurt"],
+  $esAmericano = false]
 ];
 
 var_dump($ceu2);
+var_dump($ceu2["Aergentina"]);
 
 foreach ($ceu2 as $pais => $ciudad) {
   echo "Las ciudades de $pais son: ";
