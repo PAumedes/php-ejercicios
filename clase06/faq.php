@@ -12,8 +12,13 @@
     ];
     $colores = [
         'Blanco' => '#FFFFFF',
-        'Verde' => '00FF00',
-        'Rojo' => 'FF0000'];
+        'Verde' => '#00FF00',
+        'Rojo' => '#FF0000'];
+    $articulos = [
+        'TV' => '$15.000', 
+        'Notebook' => '$18.000', 
+        'xBox One S' => '$9.000'
+    ];
     $index = 0;
     $classIndex = 0;
 ?>
@@ -29,22 +34,23 @@
 	 	* {
 	 		box-sizing: border-box;
 	 	}
-         foreach
-	 	.color1 {
-             color: $
-	 	}
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+	}
 	 </style>
 </head>
 <body>
     <p>
-        <?php foreach ($colores as $color) : ?>
+        <?php foreach ($colores as $color => $hexColor) : ?>
             <?php $index++?>
-            <?= (count($colores) == $index) ? $color : $color.','?>
+            <span style="color:<?=$hexColor?>"><?= (count($colores) == $index) ? $color : $color.','?></span>
         <?php endforeach ;?>
     </p>
     <ul>
-    <?php foreach ($colores as $color) : ?>
-            <li class="color<?=$classIndex?>">
+    <?php foreach ($colores as $color => $hexColor) : ?>
+            <li style="color:<?=$hexColor?>">
             <?php $classIndex++?>
             <?=$color?>
             </li>
@@ -55,5 +61,22 @@
         <h2><?=$pregunta?></h2>
         <p><?=$respuesta?></p>
     <?php endforeach ;?>
+
+
+    <table style="width:50%">
+        <tr>
+            <th>Artículo</th>
+            <th>Precio</th>
+        </tr>
+        
+            <?php foreach ($articulos as $articulo => $precio) : ?>
+            <tr>
+            <td><?=$articulo?></td>
+            <td><?=$precio?></td>
+            </tr>
+            <?php endforeach ;?>
+    </table>
+
 </body>
 </html>
+

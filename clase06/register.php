@@ -5,19 +5,30 @@
 		$style = "style='display:none;'";
 	}
 
+	var_dump($_POST, $_GET);
+
 	function phpAlert($msg) {
     echo '<script type="text/javascript">alert("' . $msg . '")</script>';
 	}
 
-	if (($_POST['name'] == '') && ($_POST['email'] == '') && ($_POST['username'] == '') && ($_POST['password'] == '')) {
-		phpAlert("Completá los campos obligatorios");
-	} else {
-		header('Location: register.php'); 
-		exit;
+	if (isset($_POST['btn-sent'])) {
+		$name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+		$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+		$pasword = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+		
+		if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['username']) || empty($_POST['password'])) {
+			phpAlert("Completá los campos obligatorios");
+		} else {
+			header('Location: felicitaciones.html'); 
+			exit;
+		}
 	}
+
+
 ?>
 
-<!DOCTYPE) html>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -58,7 +69,7 @@
 	 </style>
 </head>
 <body>
-	<form method='post'>
+	<form method='post' action=''>
       <fieldset >
 			<legend>Registrate</legend>
 
@@ -86,7 +97,7 @@
 
 			<div class='form-control'<?= $style;?>>
 				<label for='confirmPassword'>Confirmar contraseña:</label>
-				<input type='text' name='confirmPassword' id='confirmPassword'>
+				<input type='password' name='confirmPassword' id='confirmPassword'>
 			</div>
 
 			<div class='form-control'<?= $style;?>>
@@ -119,7 +130,7 @@
 			</div>
 
 			<div class='form-control'>
-				<button type="submit">ENVIAR</button>
+				<button type="submit" name='btn-sent'>ENVIAR</button>
 			</div>
 			
 	  </fieldset>
