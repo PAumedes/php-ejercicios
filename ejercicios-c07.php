@@ -47,6 +47,13 @@ function existe($archivo){
     }
 }
 
+echo "<br>";
+echo "<br>";
+
+
+// Leer el archivo e imprimir un checkbox por cada categoría, capaz de ser enviado como array en un formulario. El value de cada checkbox será el id y el label mostrado a su derecha será el nombre proveniente del json como vemos en el en el array.
+
+
 // Asigna el contenido de todo el archivo JSON a una variable en formato string
 $lasCategorias = file_get_contents('categorias.json');
 
@@ -58,24 +65,16 @@ array_pop($categoriasArray);
 
 // Crea una nueva array
 $categoriasFinales = [];
-foreach ($categoriasArray as $categoria) {
-    $categoriasFinales[] = json_decode($categoria, true);
+foreach ($categoriasArray as $id) {
+    $categoriasFinales[] = json_decode($id, true);
 }
-var_dump($categoriasFinales);
-exit;
-
-
-
-
-
-
-
-
 ?>
 
-<form>
-<?php foreach ($jsonArray as $id => $nombre) : ?>
-    <input type="checkbox" name="<?=$nombre?>" value="<?=id?>"><?=$nombre?><br>
+<form action="">
+<?php foreach ($categoriasFinales as $laCategoria): ?>
+<label for="<?=$laCategoria['id']?>">
+    <input type="checkbox" name="<?=$laCategoria['id']?>" value="<?=$laCategoria['nombre']?>" id="<?=$laCategoria['id']?>"><?=$laCategoria['nombre']?><br>
+</label>
 <?php endforeach; ?>
 </form>
 
@@ -85,4 +84,4 @@ exit;
 </p>
 
 
-    <!-- Leer el archivo e imprimir un checkbox por cada categoría, capaz de ser enviado como array en un formulario. El value de cada checkbox será el id y el label mostrado a su derecha será el nombre proveniente del json como vemos en el en el array. -->
+
