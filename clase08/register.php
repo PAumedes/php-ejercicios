@@ -1,4 +1,7 @@
 <?php
+
+require_once(functions.php);
+
 	// VERSION CORTA
 	$style = "";
 	if(isset($_POST['versionCorta'])){
@@ -33,78 +36,20 @@
 	$errorCountry = "";
 	$hobbies = [];
 	$errorHobbies = "";
+	// PROFILE
+	$picName = "";
+	$picExt = "";
+	$tmpPicName = "";
+	$seSubio = "";
+	$nombreArchivo = "";
+	$ext = "";
 	
 	// ARCHIVO JSON
 	$fileJSON = "registro.json";
 	$arrayJSON = [];
 	$stringJSON = "";
 	
-	if ($_POST) {
-		$name = trim($_POST['name']);
-		if ($name == ""){
-			$errorName = "Por favor ingresá tu nombre";
-		}
-		$email = trim($_POST['email']);
-		if ($email == ""){
-			$errorEmail = "Por favor ingresá tu email";
-		} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-			$errorEmail = "Por favor ingresá un email válido";
-		}
-		$username = trim($_POST['username']);
-		if ($username == ""){
-			$errorUsername = "Por favor ingresá tu nombre de usuario";
-		}
-		$pass = trim($_POST['password']);
-		if ($pass == ""){
-			$errorPass = "Por favor ingresá un password";
-		}
-		$rpass = trim($_POST['confirmPassword']);
-		if ($rpass == ""){
-			$errorRPass = "Por favor ingresá la confirmación del password";
-		}
-		if ($pass != $rpass){
-			$errorPass = $errorRPass = "Las contraseñas no coinciden, por favor ingresalas nuevamente";
-		}						
-		$tel = trim($_POST['telephone']);
-		if ($tel == ""){
-			$errorTel = "Por favor ingresá tu teléfono";
-		}
-		$address = trim($_POST['address']);
-		if ($address == ""){
-			$errorAddress = "Por favor ingresá tu dirección";
-		}				
-		$country = $_POST['paises'];
-		if (array_key_exists('hobbies', $_POST)) {
-			$hobbies = $_POST['hobbies'];
-		} else {
-			$hobbies = [];
-			$errorHobbies = "Por favor seleccioná uno o más hobbies";
-		}
-		if ($errorName == "" && $errorEmail == "" && $errorUsername == "" && $errorPass == "" && $errorRPass == "" && $errorTel == "" && $errorAddress == "" && $errorHobbies == "") {
-			$hashPass = password_hash($pass, PASSWORD_DEFAULT);
-			$arrayJSON = [
-				'name' => $name, 
-				'email' => $email,
-				'username' => $username,
-				'password' => $hashPass,
-				'telephone' => $tel,
-				'address' => $address, 
-				'hobbies' => $hobbies,
-				'paises' => $country
-			];
-			echo "<pre>";
-			var_dump($arrayJSON);
-			echo "</pre>";
-			echo "<br>",
-			$stringJSON = json_encode($arrayJSON) . PHP_EOL;
-			echo "<pre>";
-			var_dump($stringJSON);
-			echo "</pre>";
-			echo "<br>",
-			file_put_contents($fileJSON, $stringJSON, FILE_APPEND);
-			header("location:success.php");
-	}
-	}
+
 ?>
 
 
@@ -152,7 +97,7 @@
 	 </style>
 </head>
 <body>
-	<form method='post' action=''>
+	<form method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>' enctype="multipart/form-data">
       <fieldset >
 			<legend>Registrate</legend>
 
@@ -226,6 +171,12 @@
 					<?php endif; ?>
 				<?php endforeach; ?>
 				<span><?=$errorHobbies?></span>
+			</div>
+
+			<div class="form-control">
+				<label for="profilePic">Tu foto de perfil</label>
+				<input type="file" name="profilePic">
+				<span><?=$seSubio?></span>
 			</div>
 
 			<div class='form-control'>
